@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/templateUsuario.xhtml">
+        <ui:define name="title">Eureka | Intranet</ui:define>        
+        <ui:define name="body">
+            <p:growl id="growl" showDetail="true" life="2000"/>
+            <section class="container container-paginas">
+                <h:form>
+                    <h:commandLink class="navegacion-paginas" value="Index" action="/index"/> > Manuales
+                </h:form>
+                <header class="header-paginas">
+                    <h2><span class="titulo-paginas">Manuales</span></h2>
+                </header>
+                <section id="clients">
+                    <h:form>
+                        <div class="row no-gutters clearfix">
+                            <div class="col-lg-2 col-md-2 col-xs-6">
+                                <div class="itemZoom">
+                                    <a href="#{request.contextPath}/resources/manuales/manualCreacionItemEcuador.pdf" target="_blanck">
+                                        <img class="img-responsive" width="100%" src="#{request.contextPath}/resources/images/modBiblioteca/manuales/manualCreacionItems.png"/>
+                                    </a>    
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </h:form>
+                </section>
+            </section>
+        </ui:define>
+    </ui:composition>    
+</html>
+
+
+
+
+

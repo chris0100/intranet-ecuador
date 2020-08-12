@@ -1,0 +1,101 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <ui:composition template="/template/templateUsuario.xhtml">
+        <ui:define name="title">Eureka | Intranet</ui:define>        
+        <ui:define name="body">
+            <p:growl id="growl" showDetail="true" life="2000"/>
+            <section class="container container-paginas">
+                <h:form>
+                    <h:commandLink class="navegacion-paginas" value="Index" action="/index"/> > Reportes
+                </h:form>
+                <header class="header-paginas">
+                    <h2><span class="titulo-paginas">Reporte de inventario disponible</span></h2>
+                </header>
+                <div>
+                    <h:form id="form-list5">
+                        <h4 class="colorLetra" style="font-weight: bold" >
+                            Total : #{fn:length(reporteSaldoPedido.listaReporteSaldo)}
+                        </h4>
+                        <p:commandButton value="Descargar datos" ajax="false"  icon="fa fa-download">
+                            <p:fileDownload value="#{reporteSaldoPedido.descargarXlsSaldoDisponible}" />
+                        </p:commandButton>
+                        <p:commandButton value="enviar xls" ajax="false" action="#{reporteSaldoPedido.enviarXlsSaldoDisponible}" icon="fa fa-download">
+                        </p:commandButton>
+                        <p:outputPanel id="periodoTablePanel">
+                            <p:dataTable value="#{reporteSaldoPedido.listaReporteSaldo}" var="item"
+                                         rows="50" id="periodoTable" paginator="true" 
+                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="50, 100,150">
+
+                                <p:column filterBy="#{item.salesman}" filterMatchMode="contains">
+                                    <f:facet name="header">Código vendedor</f:facet>
+                                    <h:outputText value="#{item.salesman}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.nombreVendedor}" filterMatchMode="contains" >
+                                    <f:facet name="header">Descripción</f:facet>
+                                    <h:outputText value="#{item.nombreVendedor}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.clientId}" filterMatchMode="contains">
+                                    <f:facet name="header">Cod. cliente</f:facet>
+                                    <h:outputText value="#{item.clientId}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.nombreCliente}" filterMatchMode="contains">
+                                    <f:facet name="header">Nombre cliente</f:facet>
+                                    <h:outputText value="#{item.nombreCliente}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.contratoIdCorp}" filterMatchMode="contains">
+                                    <f:facet name="header">Cod. pedido</f:facet>
+                                    <h:outputText value="#{item.contratoIdCorp}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.fechaPedido}" filterMatchMode="contains">
+                                    <f:facet name="header">Fecha. pedido</f:facet>
+                                    <h:outputText value="#{item.fechaPedido}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.idItem}" filterMatchMode="contains">
+                                    <f:facet name="header">Cod. ítem</f:facet>
+                                    <h:outputText value="#{item.idItem}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.descItem}" filterMatchMode="contains">
+                                    <f:facet name="header">Desc. ítem</f:facet>
+                                    <h:outputText value="#{item.descItem}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.quantity}" filterMatchMode="contains">
+                                    <f:facet name="header">Cantidad</f:facet>
+                                    <h:outputText value="#{item.quantity}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.backordernostock}" filterMatchMode="contains">
+                                    <f:facet name="header">Back order stock</f:facet>
+                                    <h:outputText value="#{item.backordernostock}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.despachados}" filterMatchMode="contains">
+                                    <f:facet name="header">Despachados</f:facet>
+                                    <h:outputText value="#{item.despachados}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.porDespachar}" filterMatchMode="contains">
+                                    <f:facet name="header">Por despachar</f:facet>
+                                    <h:outputText value="#{item.porDespachar}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.precioFinalConDescuento}" filterMatchMode="contains">
+                                    <f:facet name="header">Precio final</f:facet>
+                                    <h:outputText value="#{item.precioFinalConDescuento}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:outputPanel>
+                    </h:form>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>    
+</html>
+
+
+
+
+
+

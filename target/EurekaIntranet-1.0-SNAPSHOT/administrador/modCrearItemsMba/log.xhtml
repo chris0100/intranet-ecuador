@@ -1,0 +1,127 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions"
+      xmlns:jsf="http://xmlns.jcp.org/jsf">
+    <ui:composition template="/template/templateAdministrador.xhtml">
+        <ui:define name="menu">
+            <h:form id="menu-principal">
+                <ul class="sidebar-menu">
+                    <li style="margin-top: 20px">
+                        <h:commandLink action="#{crearItemMbaController.prepareCreate}">
+                            <i class="fa fa-rocket"></i> 
+                            <span>Crear nuevo producto</span>
+                        </h:commandLink>
+                    </li>
+                    <li class="active" >
+                        <h:commandLink action="#{crearItemMbaController.prepareLogCreados}">
+                            <i class="fa fa-file-text"></i> 
+                            <span>Productos creados</span>
+                        </h:commandLink>
+                    </li>
+                    <p:separator></p:separator>
+                    <li>
+                        <h:commandLink action="/index">
+                            <i class="fa fa-dashboard"></i> 
+                            <span>Vista de usuario estandar</span>
+                        </h:commandLink>
+                    </li>
+                    <li>
+                        <h:commandLink action="/administrador/modulos">
+                            <i class="fa fa-th"></i>
+                            <span>Modulos del sistema</span>
+                        </h:commandLink>
+                    </li>
+                </ul>
+            </h:form>
+        </ui:define>
+        <ui:define name="title">Productos creados en el MBA</ui:define>   
+        <ui:define name="title2">Gestión de productos</ui:define>   
+        <ui:define name="body">
+            <p:growl id="growl" showDetail="true" life="2000"/>
+            <h:form>
+                <p:dataTable value="#{crearItemMbaController.listaItem}" var="item"
+                                rows="50" id="documentosTable" paginator="true"
+                                paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                rowsPerPageTemplate="50, 100,150">
+                       <f:facet name="header">
+                           <div class="container-fluid">
+                               <div class="row">
+                                   <div class="col-md-9">
+                                       <h4 class="colorLetra" style="font-weight: bold" >
+                                           Log de ítems creados: #{fn:length(crearItemMbaController.listaItem)}
+                                        </h4>
+                                   </div>
+                                   <div class="col-md-1">
+                                       <h:commandLink id="exportExcel">
+                                           <p:graphicImage library="images" name="/icons/logoExcel.png" width="40"/>
+                                           <p:dataExporter type="xls" postProcessor="#{exportarTable.postProcessXLS}"
+                                                   target="documentosTable" fileName="inventario" />
+                                       </h:commandLink>
+                                   </div>
+                               </div>
+                           </div>
+                        </f:facet>
+                        <p:column filterBy="#{item.idItem}" width="" filterMatchMode="contains">
+                           <f:facet name="header">Cod. item</f:facet>
+                           <h:outputText style="font-weight: bold" value="#{item.idItem}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.descItem}" filterMatchMode="contains">
+                           <f:facet name="header">Descripcion</f:facet>
+                           <h:outputText style="font-weight: bold" value="#{item.descItem}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.ext1}" filterMatchMode="contains">
+                           <f:facet name="header">Ext 1.</f:facet>
+                           <h:outputText value="#{item.ext1}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.ext2}" filterMatchMode="contains">
+                           <f:facet name="header">Descripción ext 2.</f:facet>
+                           <h:outputText value="#{item.ext2}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.ext3}" filterMatchMode="contains">
+                           <f:facet name="header">Descripción ext 3.</f:facet>
+                           <h:outputText value="#{item.ext3}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.ext4}" filterMatchMode="contains">
+                           <f:facet name="header">Descripción ext 4.</f:facet>
+                           <h:outputText value="#{item.ext4}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.ext5}" filterMatchMode="contains">
+                           <f:facet name="header">Descripción ext 5.</f:facet>
+                           <h:outputText value="#{item.ext5}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.costo}" filterMatchMode="contains">
+                           <f:facet name="header">Costo</f:facet>
+                           <h:outputText value="#{item.costo}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.precio}" filterMatchMode="contains">
+                           <f:facet name="header">Precio</f:facet>
+                           <h:outputText value="#{item.precio}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.codBarra}" filterMatchMode="contains">
+                           <f:facet name="header">Cod. barras</f:facet>
+                           <h:outputText value="#{item.codBarra}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.descripcionCompleta1}" filterMatchMode="contains">
+                           <f:facet name="header">Desc. completa </f:facet>
+                           <h:outputText value="#{item.descripcionCompleta1}"/>
+                        </p:column>
+                        <p:column filterBy="#{item.idUsuario}" filterMatchMode="contains">
+                           <f:facet name="header">Usuario creación</f:facet>
+                           <h:outputText value="#{item.idUsuario.toString()}"/>
+                       </p:column>
+                       <p:column priority="7">
+                            <f:facet name="header">Fecha creación</f:facet>
+                            <h:outputText value="#{item.fechaCreacion}">
+                                <f:convertDateTime pattern="dd/MM/YYYY HH:mm"/>
+                            </h:outputText>
+                       </p:column>
+                   </p:dataTable>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+</html>

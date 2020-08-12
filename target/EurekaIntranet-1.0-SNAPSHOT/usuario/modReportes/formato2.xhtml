@@ -1,0 +1,206 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CORPORACIÓN EKAZIPPER DEL ECUADOR S.A. - SALDOS DE PEDIDOS</title>
+        <style>
+            @page {
+                size: A4 landscape !important;
+                border-top: 1px solid #d9d9d9;
+                border-bottom: 1px solid #d9d9d9;   
+                size: 6in 11in;
+                font-size: 6px !important;
+                tr{page-break-inside:avoid;}
+                @bottom-right { content: "Página " counter(page) " de " counter(pages); } } 
+                #header { width: 1100px;top: 0; left: 0; right: 0; } 
+                #footer { position: fixed; width: 650px; bottom: 0; left: 0; right: 0; page-break-after: always; font-size: 5px !important } /* Fix overflow of headers and content */ 
+                body { padding-top: 0px; } .custom-page-start { margin-top: 0px; }
+                .custom-footer-page-number:after { 
+                    content: counter(page);
+                    font-size: 8px !important;
+                }
+            @page :first {
+                border-top: none;
+            }
+            body{
+                font-size: 8px !important;
+            }
+            th{
+                border-bottom: 1px solid black;
+            }
+            .tamanoDes{
+                width: 330px !important;
+            }
+            .direccion{
+               margin-left: 5px;
+            }
+            .direccion2{
+                float:right !important;
+            }
+            .tamano{
+                width: 100px !important
+            }
+            .yourTableClass { 
+                border-spacing: -30px !important;  
+                *border-collapse: expression('separate', cellSpacing = '-30px') !important;
+                height: 5px !important;
+            }
+            .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th{
+                padding: 0px !important;
+                padding-left: 5px !important;
+                padding-right: 0px !important;
+                min-height: 10px !important;
+                margin: 0px !important;
+                padding: -30px !important;
+                margin: -30px !important;
+                height: 5px !important;
+            }
+            .borderSubTable{
+                border: 0 !important;
+                padding: 0 !important;
+                margin: -30px !important;
+            }
+            .ui-datatable thead th, .ui-datatable tfoot td{
+                text-align: left !important;
+            }
+            .titulo-tabla{
+                text-align: left !important;  
+            }
+            .borderSubTableCodigo{
+                border-left: 0 !important
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id="header" style="margin-bottom: 1em; display: block; width: 1100px">
+                <div style="width: 900px; display:inline-block; vertical-align: top; text-align: left;">
+                    <div style="width: 700px; display: inline-block;padding: 0px; vertical-align: top; text-align: left;">
+                        <span style="font-weight: bold; font-size: 10px !important">CORPORACIÓN EKAZIPPER DEL ECUADOR S.A. - SALDOS DE PEDIDOS</span>
+                    </div>
+                    <div style="width: 700px; display: inline-block;padding: 0px; vertical-align: top; text-align: left; font-size: 10px">
+                        <span style="font-weight: bold;">Vendedor: </span> Todos
+                    </div>
+                </div>
+                <div style="width: 80px; display: inline-block">
+                    <img src="#{request.contextPath}/resources/images/logoEka.png" style="width: 80px;"/>
+                </div>
+            </div>
+            <div style="width: 1000px;">
+                <p:dataTable style="margin-top: 3px;text-align: left; border-collapse: collapse !important;font-size: 8px; border: 1px solid #d9d9d9;"
+                             value="#{reporteSaldoController.listaReporteSaldoEnvio}"
+                             var="item" sortBy="#{item.nombreVendedor}">
+                    <p:column groupRow="true" width="100">
+                        <f:facet name="header"><span style="text-align: center;">Vendedor</span></f:facet>
+                        <h:outputText style="font-weight: bold" value="#{item.nombreVendedor}"/>
+                        #{reporteSaldoController.obtenerSubTotal(item.porDespachar, item.precioFinalConDescuento)}
+                    </p:column>
+                    <p:column width="180">
+                        <f:facet name="header"><span style="text-align: center;">Cliente</span></f:facet>
+                        <h:outputText value="#{item.nombreCliente}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header"><span style="text-align: center;">Pedido sistema</span></f:facet>
+                        <h:outputText  value="#{item.contratoId}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header"><span style="text-align: center;">Pedido manual</span></f:facet>
+                        <h:outputText  value="#{item.ordenCompra}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header"><span style="text-align: center;">Fecha ped.</span></f:facet>
+                        <h:outputText  value="#{item.fechaPedido}"/>
+                    </p:column>
+                    <p:column width="250">
+                        <f:facet name="header"><span style="text-align: center;">Producto</span></f:facet>
+                        <h:outputText  value="#{item.descItem} "/> 
+                        <h:outputText  value="#{item.ext1} "/>
+                        <h:outputText  value="#{item.ext2} "/>
+                        <h:outputText  value="#{item.ext3} "/>
+                        <h:outputText  value="#{item.ext4} "/>
+                        <h:outputText  value="#{item.ext5} "/>
+                        <h:outputText  value="#{item.descExt5}"/>
+                    </p:column>
+                   <p:column>
+                        <f:facet name="header"><span style="text-align: center;">Fecha compromiso</span></f:facet>
+                        <h:outputText  value="#{item.fechaComprom}"/>
+                    </p:column>
+                    <p:column>
+                        <f:facet name="header"><span style="text-align: center;">Cod. barras item</span></f:facet>
+                        <h:outputText  value="#{item.codBarraItem}"/>
+                    </p:column>
+                    <p:column width="40" style="text-align: right !important">
+                        <f:facet name="header"><span style="text-align: center;">Cant pedida cte.</span></f:facet>
+                        <h:outputText  value="#{item.quantity}">
+                                <f:convertNumber type="currency"
+                                                currencySymbol=""
+                                                maxFractionDigits="0"/>
+                        </h:outputText>
+                    </p:column>
+                     <p:column width="40" style="text-align: right !important">
+                        <f:facet name="header"><span style="text-align: center;">Cant pedida Colomb.</span></f:facet>
+                        <h:outputText  value="#{item.backordernostock}">
+                                <f:convertNumber type="currency"
+                                                currencySymbol=""
+                                                maxFractionDigits="0"/>
+                        </h:outputText>
+                    </p:column>
+                     <p:column width="40" style="text-align: right !important">
+                        <f:facet name="header"><span style="text-align: center;">Desp. parcial</span></f:facet>
+                        <h:outputText  value="#{item.despachados}">
+                                <f:convertNumber type="currency"
+                                                currencySymbol=""
+                                                maxFractionDigits="0"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:column width="40" style="text-align: right !important">
+                        <f:facet name="header"><span style="text-align: center;">Por desp.</span></f:facet>
+                        <h:outputText  value="#{item.porDespachar}">
+                                <f:convertNumber type="currency"
+                                                currencySymbol=""
+                                                maxFractionDigits="0"/>
+                        </h:outputText>
+                    </p:column>
+                     <p:column width="50" style="text-align: right !important">
+                        <f:facet name="header"><span style="text-align: center;">Precio</span></f:facet>
+                        <h:outputText  value="#{item.precioFinalConDescuento}">
+                                <f:convertNumber type="currency"
+                                                currencySymbol=""
+                                                maxFractionDigits="6"/>
+                        </h:outputText>
+                    </p:column>
+                    <p:summaryRow>
+                        <p:column colspan="11" style="text-align:right">
+                            <h:outputText value="Sub total:" />
+                        </p:column>
+                        <p:column style="text-align: right !important">
+                            <h:outputText value="#{reporteSaldoController.subTotalAcumulado}">
+                                <f:convertNumber type="currency"
+                                                currencySymbol=""
+                                                maxFractionDigits="3"/>
+                            </h:outputText>
+                        </p:column>
+                    </p:summaryRow>
+                </p:dataTable>
+                <div style="margin-top: 5px; font-size: 10px">
+                    <div style="width: 922px; display: inline-block; font-weight: bold">
+                        TOTAL:
+                    </div>
+                    <div style="width: 70px; display: inline-block;text-align: right;font-weight: bold">
+                        <h:outputText value="#{reporteSaldoController.valueTotal}">
+                             <f:convertNumber type="currency"
+                                            currencySymbol=""
+                                            maxFractionDigits="6"/>
+                        </h:outputText> 
+                    </div>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
+
+

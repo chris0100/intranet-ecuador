@@ -1,0 +1,188 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+    <h:head>
+        <title>CORPORACIÓN EKAZIPPER DEL ECUADOR S.A. - ALERTA</title>
+        <style>
+            @page {
+                border-top: 1px solid #d9d9d9;
+                border-bottom: 1px solid #d9d9d9;   
+                size: 6in 11in;
+                font-size: 6px !important;
+                tr{page-break-inside:avoid;}
+                @bottom-right { content: "Página " counter(page) " de " counter(pages); } } 
+                #header { width: 1100px;top: 0; left: 0; right: 0; } 
+                #footer { position: fixed; width: 650px; bottom: 0; left: 0; right: 0; page-break-after: always; font-size: 5px !important } /* Fix overflow of headers and content */ 
+                body { padding-top: 0px; } .custom-page-start { margin-top: 0px; }
+                .custom-footer-page-number:after { 
+                    content: counter(page);
+                    font-size: 8px !important;
+                }
+            @page :first {
+                border-top: none;
+            }
+            body{
+                font-size: 8px !important;
+            }
+            th{
+                border-bottom: 1px solid black;
+            }
+            .tamanoDes{
+                width: 330px !important;
+            }
+            .direccion{
+               margin-left: 5px;
+            }
+            .direccion2{
+                float:right !important;
+            }
+            .tamano{
+                width: 100px !important
+            }
+            .yourTableClass { 
+                border-spacing: -30px !important;  
+                *border-collapse: expression('separate', cellSpacing = '-30px') !important;
+                height: 5px !important;
+            }
+            .ui-datatable thead th, .ui-datatable tbody td, .ui-datatable tfoot td, .ui-datatable tfoot th{
+                padding: 0px !important;
+                padding-left: 5px !important;
+                padding-right: 0px !important;
+                min-height: 10px !important;
+                margin: 0px !important;
+                padding: -30px !important;
+                margin: -30px !important;
+                height: 5px !important;
+            }
+            .borderSubTable{
+                border: 0 !important;
+                padding: 0 !important;
+                margin: -30px !important;
+            }
+            .ui-datatable thead th, .ui-datatable tfoot td{
+                text-align: left !important;
+            }
+            .titulo-tabla{
+                text-align: left !important;  
+            }
+            .borderSubTableCodigo{
+                border-left: 0 !important
+            }
+        </style>
+    </h:head>
+    <h:body>
+        <h:form>
+            <div id="header" style="margin-bottom: 1em; display: block; width: 1100px">
+                <div style="width: 400px; display:inline-block; vertical-align: top; text-align: left;">
+                    <div style="width: 400px; display: inline-block;padding: 0px; vertical-align: top; text-align: left;">
+                        <span style="font-weight: bold; font-size: 10px !important">CORPORACIÓN EKAZIPPER DEL ECUADOR S.A. 
+                            <br></br>
+                            ALERTA DE DATOS INCOMPLETOS EN LA PLATAFORMA MBA
+                        </span>
+                    </div>
+                </div>
+                <div style="width: 80px; display: inline-block">
+                    <img src="#{request.contextPath}/resources/images/logoEka.png" style="width: 80px;"/>
+                </div>
+            </div>
+            <div style="width: 480px; vertical-align: top !important">
+                <div style="margin-right: 10px; vertical-align: top !important">
+                    <h3>ÍTEMS SIN PRECIO</h3>
+                    <p:dataTable style="margin-top: 3px;text-align: left; border-collapse: collapse !important;font-size: 8px; border: 1px solid #d9d9d9;"
+                                 value="#{reporteAlertaController.listaPrecio}"
+                                 var="item" rowIndexVar="rowIndex" emptyMessage="TODOS LOS ÍTEMS TIENEN PRECIO">
+                        <p:column width="20" headerText="#">
+                            #{rowIndex + 1}
+                        </p:column>
+                        <p:column width="60">
+                            <f:facet name="header"><span style="text-align: center;">Cod. ítem</span></f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header"><span style="text-align: center;">Descripción</span></f:facet>
+                            <h:outputText  value="#{item.descripcion}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div style="margin-right: 10px; vertical-align: top !important">
+                    <h3>ÍTEMS SIN COSTO</h3>
+                    <p:dataTable style="margin-top: 3px;text-align: left; border-collapse: collapse !important;font-size: 8px; border: 1px solid #d9d9d9;"
+                                 value="#{reporteAlertaController.listaCosto}"
+                                 var="item" rowIndexVar="rowIndex" emptyMessage="TODOS LOS ÍTEMS TIENEN COSTO">
+                        <p:column width="20" headerText="#">
+                            #{rowIndex + 1}
+                        </p:column>
+                        <p:column width="60">
+                            <f:facet name="header"><span style="text-align: center;">Cod. ítem</span></f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header"><span style="text-align: center;">Descripción</span></f:facet>
+                            <h:outputText  value="#{item.descripcion}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div style="margin-right: 10px; vertical-align: top !important">
+                    <h3>CLIENTES SIN VENDEDOR</h3>
+                    <p:dataTable style="margin-top: 3px;text-align: left; border-collapse: collapse !important;font-size: 8px; border: 1px solid #d9d9d9;"
+                                 value="#{reporteAlertaController.listaCliente}" emptyMessage="TODOS LOS CLIENTES TIENEN VENDEDORES"
+                                 var="item" rowIndexVar="rowIndex">
+                        <p:column width="20" headerText="#">
+                            #{rowIndex + 1}
+                        </p:column>
+                        <p:column width="60">
+                            <f:facet name="header"><span style="text-align: center;">Cod. ítem</span></f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header"><span style="text-align: center;">Descripción</span></f:facet>
+                            <h:outputText  value="#{item.descripcion}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div style="margin-right: 10px; vertical-align: top !important">
+                    <h3>ÍTEMS SIN CÓDIGO DE BARRAS</h3>
+                    <p:dataTable style="margin-top: 3px;text-align: left; border-collapse: collapse !important;font-size: 8px; border: 1px solid #d9d9d9;"
+                                 value="#{reporteAlertaController.listaCodBarra}" emptyMessage="TODOS LOS ÍTEMS TIENEN CÓDIGO DE BARRA"
+                                 var="item" rowIndexVar="rowIndex">
+                        <p:column width="20" headerText="#">
+                            #{rowIndex + 1}
+                        </p:column>
+                        <p:column width="60">
+                            <f:facet name="header"><span style="text-align: center;">Cod. ítem</span></f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header"><span style="text-align: center;">Descripción</span></f:facet>
+                            <h:outputText  value="#{item.descripcion}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+                <div style="margin-right: 10px; vertical-align: top !important">
+                    <h3>ÍTEMS SIN CÓDIGO DE BARRAS</h3>
+                    <p:dataTable style="margin-top: 3px;text-align: left; border-collapse: collapse !important;font-size: 8px; border: 1px solid #d9d9d9;"
+                                 value="#{reporteAlertaController.listaCodBarra}" emptyMessage="TODOS LOS ÍTEMS TIENEN CÓDIGO DE BARRA"
+                                 var="item" rowIndexVar="rowIndex">
+                        <p:column width="20" headerText="#">
+                            #{rowIndex + 1}
+                        </p:column>
+                        <p:column width="60">
+                            <f:facet name="header"><span style="text-align: center;">Cod. ítem</span></f:facet>
+                            <h:outputText value="#{item.codigo}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header"><span style="text-align: center;">Descripción</span></f:facet>
+                            <h:outputText  value="#{item.descripcion}"/>
+                        </p:column>
+                    </p:dataTable>
+                </div>
+            </div>
+        </h:form>
+    </h:body>
+</html>
+
+
+

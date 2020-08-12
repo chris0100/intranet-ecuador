@@ -1,0 +1,216 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/templateUsuario.xhtml">
+        <ui:define name="title">Eureka | Intranet</ui:define>        
+        <ui:define name="body">
+            <p:growl id="growl" sticky="true" showDetail="true" life="3000" />
+            <section id="testimonials" style="margin-top: 20px">
+                <div class="wow fadeIn">
+                    <div class="owl-carousel testimonials-carousel wow fadeInUp">
+                        <div class="testimonial-item">
+                          <img src="#{request.contextPath}/resources/images/slider/img1.jpg" alt="" class="img-fluid"/>
+                        </div>
+                        <div class="wow fadeIn">
+                            <section id="intro" class="clearfix">
+                                <div class="container">
+                                    <div class="intro-img">
+                                      <img src="#{request.contextPath}/resources/templateNuevo/img/intro-img.svg" alt="" class="img-fluid"/>
+                                    </div>
+                                    <h:form>
+                                        <div class="intro-info">
+                                            <h2>Eureka<br></br><span>Intranet</span><br></br>Nuestro punto de encuentro virtual.</h2>
+                                            <div>
+                                                <p:commandLink class="btn-get-started scrollto" value="Iniciar sesión" rendered="#{!loginController.authenticated}"  onclick="PF('dlg1').show();"/>
+                                                <a href="#about" class="btn-services scrollto">¿Qué es Eureka?</a>
+                                            </div>
+                                        </div>
+                                    </h:form>
+                                </div>
+                             </section><!-- #intro -->
+                        </div>
+                    </div>
+                </div>
+            </section>
+            <!--==========================
+                Eureka
+              ============================-->
+            <section id="about">
+                <h:form>
+                    <div class="container">
+                        <header class="section-header">
+                            <h3>¿Qué es Eureka?</h3>
+                        </header>
+                        <div class="row about-container">
+                            <div class="col-lg-6 content order-lg-1 order-2">
+                                <p>
+                                    Eureka es una plataforma web interna, 
+                                    diseñada para ser aprovechada por todos nuestros 
+                                    colaboradores y puedan acceder a servicios 
+                                    exclusivos y privados de la compañía,
+                                    con el objetivo de promover nuevas formas de colaboración 
+                                    y acceso a los sistemas.
+                                </p>
+                                <p>
+                                    Algunos de los modulos y servicios de Eureka: 
+                                </p>
+                                <div class="icon-box wow fadeInUp">
+                                    <div class="icon"><i class="fa fa-file"></i></div>
+                                    <h4 class="title"><h:link value="Reportes" outcome="/usuario/modGestorDocumental/documento/principal.xhtml"/></h4>
+                                    <p class="description">Accede a los documentos y formatos de la compañia en su versión actual.</p>
+                                 </div>
+                                <div class="icon-box wow fadeInUp" data-wow-delay="0.2s">
+                                    <div class="icon"><i class="fa fa-list"></i></div>
+                                    <h4 class="title"><h:link value="Directorio telefónico" outcome="/usuario/modZonaAgil/directorio.xhtml"/></h4>
+                                    <p class="description">Consulta las extensiones telefónicas de tus compañeros de forma rápida y sencilla.</p>
+                                </div>
+                                <div class="icon-box wow fadeInUp" data-wow-delay="0.4s">
+                                    <div class="icon"><i class="fa fa-bullhorn"></i></div>
+                                    <h4 class="title">Contenidos y noticias</h4>
+                                    <p class="description">Entérate sobre los proyectos, programas, mejoras y actividades corporativas que Eka tiene para ti.</p>
+                                </div>
+                            </div>
+                            <div class="col-lg-6 background order-lg-2 order-1 wow fadeInUp">
+                              <img src="#{request.contextPath}/resources/templateNuevo/img/about-extra-1.svg" class="img-fluid" alt=""/>
+                            </div>
+                        </div>
+                    </div>
+                </h:form>
+            </section><!-- #about -->
+            <!--==========================
+               Clients Section
+             ============================-->
+            <section id="clients" class="section-bg">
+                <div class="container">
+                    <header class="section-header">
+                        <h3>Clientes</h3>
+                    </header>
+                    <div>
+                        <p>Como empresa que le apunta a la excelencia,
+                        EKA vive en la constante búsqueda de 
+                        la satisfacción de nuestros clientes, 
+                        atender sus necesidades y generar valores 
+                        agregados a través del mejoramiento continuo 
+                        y sistemático de sus productos y servicios.</p>
+                    </div>
+                    <div class="row no-gutters clients-wrap clearfix wow fadeInUp">
+                      <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                          <img jsf:library="images"  jsf:name="clientes/arturocalle.png" class="img-fluid" alt=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                          <img jsf:library="images" jsf:name="clientes/kfc.png" class="img-fluid" alt=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                          <img jsf:library="images" jsf:name="clientes/kostaazul.jpg" class="img-fluid" alt=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                          <img jsf:library="images" jsf:name="clientes/corral.png" class="img-fluid" alt=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                          <img jsf:library="images" jsf:name="clientes/studiof.png" class="img-fluid" alt=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                          <img jsf:library="images" jsf:name="clientes/velez.png" class="img-fluid" alt=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                          <img jsf:library="images" jsf:name="clientes/postobon.png" class="img-fluid" alt=""/>
+                        </div>
+                      </div>
+                      <div class="col-lg-3 col-md-4 col-xs-6">
+                        <div class="client-logo">
+                          <img jsf:library="images" jsf:name="clientes/hermeco.png" class="img-fluid" alt=""/>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+            </section>  
+            <!--==========================
+            Unidades
+            ============================-->
+            <section id="team">
+                <div class="container">
+                    <div class="section-header">
+                      <h3>Nuestras unidades de negocio</h3>
+                    </div>
+                    <h:form>
+                        <div class="row">
+                            <div class="col-md-3" >
+                                <div id="producto1" class="card productoZoom imagenes-link">
+                                    <img class="img-responsive" src="#{request.contextPath}/resources/images/productos/img1.jpg"/>
+                                    <div class="overlay1">
+                                        <div class="text1">
+                                            <h:commandLink action="/usuario/productos/ekaCierres">
+                                                <img class="img-responsive" src="#{request.contextPath}/resources/images/productos/ekaCierres.png"></img>
+                                            </h:commandLink>
+                                        </div>
+                                    </div>
+                                    <div class="item-overlay top"></div>
+                                </div>
+                            </div>
+                            <div  id="producto2" class="col-md-3" >
+                                <div class="card productoZoom imagenes-link">
+                                    <img class="img-responsive" src="#{request.contextPath}/resources/images/productos/img2.jpg"/> 
+                                    <div class="overlay2">
+                                        <div class="text2">
+                                            <h:commandLink action="/usuario/productos/texCintas">
+                                                <img class="img-responsive" src="#{request.contextPath}/resources/images/productos/texCintas.png"></img>
+                                            </h:commandLink>
+                                        </div>
+                                    </div>
+                                    <div class="item-overlay top"></div>
+                                </div>
+                            </div>
+                            <div id="producto3" class="col-md-3" >
+                                <div class="card productoZoom imagenes-link">
+                                    <img class="img-responsive" src="#{request.contextPath}/resources/images/productos/img3.jpg"/> 
+                                    <div class="overlay3">
+                                        <div class="text3">
+                                            <h:commandLink action="/usuario/productos/kos">
+                                                <img class="img-responsive" src="#{request.contextPath}/resources/images/productos/kos.png"></img>
+                                            </h:commandLink>
+                                        </div>
+                                    </div>
+                                    <div class="item-overlay top"></div>
+                                </div>
+                            </div>
+                            <div id="producto4" class="col-md-3" >
+                                <div class="card productoZoom imagenes-link">
+                                    <img class="img-responsive" src="#{request.contextPath}/resources/images/productos/img4.jpg"/>  
+                                    <div class="overlay4">
+                                        <div class="text4">
+                                            <h:commandLink action="/usuario/productos/doshka">
+                                                <img class="img-responsive" src="#{request.contextPath}/resources/images/productos/doshka.png"></img>
+                                            </h:commandLink>
+                                        </div>
+                                    </div>
+                                    <div class="item-overlay top"></div>
+                                </div>
+                            </div>
+                        </div>
+                    </h:form>
+                </div>
+            </section><!-- #team -->
+        </ui:define>
+    </ui:composition>    
+</html>
+
+
+
+

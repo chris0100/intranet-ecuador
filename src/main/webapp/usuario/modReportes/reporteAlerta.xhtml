@@ -1,0 +1,65 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <ui:composition template="/template/templateUsuario.xhtml">
+        <ui:define name="title">Eureka | Intranet</ui:define>        
+        <ui:define name="body">
+            <p:growl id="growl" showDetail="true" life="2000"/>
+            <section class="container container-paginas">
+                <h:form>
+                    <h:commandLink class="navegacion-paginas" value="Index" action="/index"/> > Reportes
+                </h:form>
+                <header class="header-paginas">
+                    <h2><span class="titulo-paginas">Reporte de inventario disponible</span></h2>
+                </header>
+                <div>
+                    <h:form id="form-list5">
+                        <h4 class="colorLetra" style="font-weight: bold" >
+                            Total : #{fn:length(reporteAlertaController.listaReporte)}
+                        </h4>
+                        <p:commandButton value="Descargar datos" ajax="false"  icon="fa fa-download">
+                            <p:fileDownload value="#{reporteInventarioController.descargarXlsInvDisponible}" />
+                        </p:commandButton>
+                        <p:commandButton value="enviar xls" ajax="false" action="#{reporteInventarioController.enviarXlsInvDisponible}" icon="fa fa-download">
+                        </p:commandButton>
+                        <p:outputPanel id="periodoTablePanel">
+                            <p:dataTable value="#{reporteInventarioController.listaReporte1}" var="item"
+                                         rows="50" id="periodoTable" paginator="true" 
+                                         paginatorTemplate="{FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+                                         rowsPerPageTemplate="50, 100,150">
+
+                                <p:column filterBy="#{item.cod}" filterMatchMode="contains" width="100">
+                                    <f:facet name="header">Código</f:facet>
+                                    <h:outputText value="#{item.cod}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.concatenado}" filterMatchMode="contains" width="300">
+                                    <f:facet name="header">Descripción</f:facet>
+                                    <h:outputText value="#{item.concatenado}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.available}" filterMatchMode="contains" width="100" style="text-align: right !important">
+                                    <f:facet name="header">Disponible</f:facet>
+                                    <h:outputText value="#{item.available}"/>
+                                </p:column>
+                                <p:column filterBy="#{item.sell}" filterMatchMode="contains" width="100" style="text-align: right !important">
+                                    <f:facet name="header">Precio</f:facet>
+                                    <h:outputText value="#{item.sell}"/>
+                                </p:column>
+                            </p:dataTable>
+                        </p:outputPanel>
+                    </h:form>
+                </div>
+            </section>
+        </ui:define>
+    </ui:composition>    
+</html>
+
+
+
+
+
+

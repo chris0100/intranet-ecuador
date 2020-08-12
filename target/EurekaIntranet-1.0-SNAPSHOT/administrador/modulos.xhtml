@@ -1,0 +1,53 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:jsf="http://xmlns.jcp.org/jsf"
+      xmlns:fn="http://java.sun.com/jsp/jstl/functions">
+    <ui:composition template="/template/templateAdministrador.xhtml">
+        <ui:define name="title">
+            Bienvenido al administrador de EUREKA.  
+        </ui:define>
+        <ui:define name="title2">
+            Selección de modulos.
+        </ui:define>
+        <ui:define name="menu">
+            <h:form id="menu-principal">
+                <ul class="sidebar-menu">
+                    <h:panelGroup>
+                         <li style="margin-top: 20px">
+                             <h:commandLink action="#{usuarioController.prepareList}" rendered="#{loginController.admin}">
+                               <i class="fa fa-users"></i> 
+                               <span>Administrar usuarios</span>
+                            </h:commandLink>
+                        </li>
+                        <li>
+                            <h:commandLink action="/index">
+                               <i class="fa fa-dashboard"></i> 
+                               <span>Vista de usuario estandar</span>
+                            </h:commandLink>
+                        </li>
+                    </h:panelGroup>
+                </ul>
+            </h:form>
+        </ui:define>
+        <ui:define name="body" >
+            <div class="row">
+                <h:form>
+                    <div class="col-md-2 col-lg-2">
+                        <div class="itemZoom img-bordered">
+                            <h:commandLink action="#{crearItemMbaController.prepareCreate}">
+                                  <img class="img-responsive" src="#{request.contextPath}/resources/images/CI.png"/>
+                            </h:commandLink> 
+                            <div class="item-overlay top"></div>
+                        </div>
+                    </div>
+                </h:form>
+            </div>
+        </ui:define>
+    </ui:composition>
+</html>
+
